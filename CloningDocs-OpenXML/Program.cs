@@ -60,22 +60,95 @@ namespace CloningDocs_OpenXML
                                
                                 if (isNumeric)
                                 {
-                                    var parentRun = currentText.Parent;
-                                    var grandPaa = parentRun.Parent;
-                                    List<Run> runsToRemove = grandPaa.Descendants<DocumentFormat.OpenXml.Wordprocessing.Run>().Skip(0).Take(7).ToList();
-                                    foreach (Run runToRemove in runsToRemove)
-                                    {
-                                        if(runToRemove.InnerText!="PAGE")
-                                        runToRemove.RemoveAllChildren();
-                                        runToRemove.Remove();
-                                    }
-                                    //For Referencing Where to Insert Pagination Nodes
-                                    Run referenceRun = grandPaa.Descendants<DocumentFormat.OpenXml.Wordprocessing.Run>().Skip(0).Take(1).First();
-                                    //New Run For Pagination Node at One Line
-                                    Run newRun = new Run();
+                                    TotalCountChange.ChangeTotalCount(currentText);
+                                    #region Before Changes
+
+                                    //var parentRun = currentText.Parent;
+                                    //var grandPaa = parentRun.Parent;
+                                    //List<Run> runsToRemove = grandPaa.Descendants<DocumentFormat.OpenXml.Wordprocessing.Run>().Skip(0).Take(7).ToList();
+                                    //foreach (Run runToRemove in runsToRemove)
+                                    //{
+                                    //    if(runToRemove.InnerText!="PAGE")
+                                    //    runToRemove.RemoveAllChildren();
+                                    //    runToRemove.Remove();
+                                    //}
+                                    ////For Referencing Where to Insert Pagination Nodes
+                                    //Run referenceRun = grandPaa.Descendants<DocumentFormat.OpenXml.Wordprocessing.Run>().Skip(0).Take(1).First();
+                                    ////New Run For Pagination Node at One Line
+                                    //Run newRun = new Run();
 
 
-                                    #region Working Partially Fine
+                                    //#region Working Partially Fine
+                                    ////RunProperties runProperties25 = new RunProperties();
+                                    ////FontSize fontSize25 = new FontSize() { Val = "16" };
+                                    ////runProperties25.Append(fontSize25);
+
+                                    ////Text objText_3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+                                    ////objText_3.Text = " of ";
+                                    ////newRun.Append(runProperties25);
+                                    ////newRun.Append(objText_3);
+                                    //////grandPaa.Append(objRun_7);
+
+
+                                    ////FieldChar objFieldChar_4 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
+                                    ////newRun.Append(objFieldChar_4);
+                                    //////grandPaa.Append(objRun_8);
+
+
+                                    ////RunProperties runProperties5 = new RunProperties();
+                                    ////Spacing spacing1 = new Spacing() { Val = -7 };
+                                    ////FontSize fontSize3 = new FontSize() { Val = "16" };
+                                    ////runProperties5.Append(spacing1);
+                                    ////runProperties5.Append(fontSize3);
+                                    ////FieldCode text3 = new FieldCode();
+                                    //////it is where we need to set our pages count
+                                    ////text3.Text = "NUMPAGES";
+
+                                    ////newRun.Append(runProperties5);
+                                    ////newRun.Append(text3);
+                                    //////grandPaa.Append(run5);
+
+
+                                    ////FieldChar objFieldChar_6 = new FieldChar() { FieldCharType = FieldCharValues.End };
+                                    ////newRun.Append(objFieldChar_6);
+                                    ////grandPaa.InsertBefore(newRun, referenceRun); 
+                                    //#endregion
+
+
+                                    //#region Working Perfectly Fine
+                                    //RunProperties runProperties4 = new RunProperties();
+                                    //FontSize fontSize2 = new FontSize() { Val = "16" };
+
+                                    //runProperties4.Append(fontSize2);
+                                    //Text text2 = new Text();
+                                    //text2.Text = "Page:";
+
+                                    //newRun.Append(runProperties4);
+                                    //newRun.Append(text2);
+                                    //#region ByWaqas
+
+                                    //FieldChar objFieldChar_1 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
+                                    //newRun.Append(objFieldChar_1);
+                                    ////grandPaa.Append(parentRun);
+
+
+                                    //RunProperties runProperties26 = new RunProperties();
+                                    //FontSize fontSize26 = new FontSize() { Val = "16" };
+
+                                    //runProperties26.Append(fontSize26);
+
+                                    //FieldCode objFieldCode_1 = new FieldCode();
+                                    //objFieldCode_1.Text = "PAGE";
+                                    ////page is page number 
+                                    //newRun.Append(runProperties26);
+                                    //newRun.Append(objFieldCode_1);
+                                    ////grandPaa.Append(parentRun);
+
+
+                                    //FieldChar objFieldChar_3 = new FieldChar() { FieldCharType = FieldCharValues.End };
+                                    //newRun.Append(objFieldChar_3);
+                                    ////grandPaa.Append(objRun_6);
+
                                     //RunProperties runProperties25 = new RunProperties();
                                     //FontSize fontSize25 = new FontSize() { Val = "16" };
                                     //runProperties25.Append(fontSize25);
@@ -108,86 +181,17 @@ namespace CloningDocs_OpenXML
 
                                     //FieldChar objFieldChar_6 = new FieldChar() { FieldCharType = FieldCharValues.End };
                                     //newRun.Append(objFieldChar_6);
-                                    //grandPaa.InsertBefore(newRun, referenceRun); 
+                                    ////grandPaa.Append(objRun_12);
+                                    //#endregion
+                                    //grandPaa.InsertBefore(newRun, referenceRun);
+                                    //#endregion
                                     #endregion
-
-
-                                    #region Working Perfectly Fine
-                                    RunProperties runProperties4 = new RunProperties();
-                                    FontSize fontSize2 = new FontSize() { Val = "16" };
-
-                                    runProperties4.Append(fontSize2);
-                                    Text text2 = new Text();
-                                    text2.Text = "Page:";
-
-                                    newRun.Append(runProperties4);
-                                    newRun.Append(text2);
-                                    #region ByWaqas
-
-                                    FieldChar objFieldChar_1 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
-                                    newRun.Append(objFieldChar_1);
-                                    //grandPaa.Append(parentRun);
-
-
-                                    RunProperties runProperties26 = new RunProperties();
-                                    FontSize fontSize26 = new FontSize() { Val = "16" };
-
-                                    runProperties26.Append(fontSize26);
-
-                                    FieldCode objFieldCode_1 = new FieldCode();
-                                    objFieldCode_1.Text = "PAGE";
-                                    //page is page number 
-                                    newRun.Append(runProperties26);
-                                    newRun.Append(objFieldCode_1);
-                                    //grandPaa.Append(parentRun);
-
-
-                                    FieldChar objFieldChar_3 = new FieldChar() { FieldCharType = FieldCharValues.End };
-                                    newRun.Append(objFieldChar_3);
-                                    //grandPaa.Append(objRun_6);
-
-                                    RunProperties runProperties25 = new RunProperties();
-                                    FontSize fontSize25 = new FontSize() { Val = "16" };
-                                    runProperties25.Append(fontSize25);
-
-                                    Text objText_3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-                                    objText_3.Text = " of ";
-                                    newRun.Append(runProperties25);
-                                    newRun.Append(objText_3);
-                                    //grandPaa.Append(objRun_7);
-
-
-                                    FieldChar objFieldChar_4 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
-                                    newRun.Append(objFieldChar_4);
-                                    //grandPaa.Append(objRun_8);
-
-
-                                    RunProperties runProperties5 = new RunProperties();
-                                    Spacing spacing1 = new Spacing() { Val = -7 };
-                                    FontSize fontSize3 = new FontSize() { Val = "16" };
-                                    runProperties5.Append(spacing1);
-                                    runProperties5.Append(fontSize3);
-                                    FieldCode text3 = new FieldCode();
-                                    //it is where we need to set our pages count
-                                    text3.Text = "NUMPAGES";
-
-                                    newRun.Append(runProperties5);
-                                    newRun.Append(text3);
-                                    //grandPaa.Append(run5);
-
-
-                                    FieldChar objFieldChar_6 = new FieldChar() { FieldCharType = FieldCharValues.End };
-                                    newRun.Append(objFieldChar_6);
-                                    //grandPaa.Append(objRun_12);
-                                    #endregion
-                                    grandPaa.InsertBefore(newRun, referenceRun); 
-                                    #endregion
-
                                 }
                             }
                         }
                         //Close the Document after If and make else if out of this loop and follow below instruction
                         //Open The Document Here and Access Pages
+                        #region Before Changes
                         else if (!isEnds && isStart && !currentText.Text.Contains("Printed"))
                         {
                             Regex re = new Regex(@" of \d+");
@@ -208,95 +212,22 @@ namespace CloningDocs_OpenXML
 
 
                                         #region Need to be changed
-                                        Text t = parentRun.Elements<Text>().First();
-                                        t.Text = t.Text.Substring(0, 6);
-                                        //string sub = t.Text.Substring(Math.Max(0, t.Text.Length - 5));
-                                        //t.Text= t.Text.Split(Convert.ToChar("f")).First();
-                                        //t.Text = t.Text + "f";
-                                        //t.RemoveAllChildren();
-                                        //t.Remove();
-                                        //RunProperties runProperties4 = new RunProperties();
-                                        //FontSize fontSize2 = new FontSize() { Val = "16" };
-
-                                        //runProperties4.Append(fontSize2);
-                                        //Text text2 = new Text();
-                                        //text2.Text = "Page:";
-
-                                        //parentRun.Append(runProperties4);
-                                        //parentRun.Append(text2);
-                                        #region ByWaqas
-
-                                        FieldChar objFieldChar_1 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
-                                        parentRun.Append(objFieldChar_1);
-                                        //grandPaa.Append(parentRun);
-
-
-                                        RunProperties runProperties26 = new RunProperties();
-                                        FontSize fontSize26 = new FontSize() { Val = "16" };
-
-                                        runProperties26.Append(fontSize26);
-
-                                        FieldCode objFieldCode_1 = new FieldCode();
-                                        objFieldCode_1.Text = "PAGE";
-                                        //page is page number 
-                                        parentRun.Append(runProperties26);
-                                        parentRun.Append(objFieldCode_1);
-                                        //grandPaa.Append(parentRun);
-
-
-                                        FieldChar objFieldChar_3 = new FieldChar() { FieldCharType = FieldCharValues.End };
-                                        parentRun.Append(objFieldChar_3);
-                                        //grandPaa.Append(objRun_6);
-
-                                        RunProperties runProperties25 = new RunProperties();
-                                        FontSize fontSize25 = new FontSize() { Val = "16" };
-                                        runProperties25.Append(fontSize25);
-
-                                        Text objText_3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-                                        objText_3.Text = " of ";
-                                        parentRun.Append(runProperties25);
-                                        parentRun.Append(objText_3);
-                                        //grandPaa.Append(objRun_7);
-
-
-                                        FieldChar objFieldChar_4 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
-                                        parentRun.Append(objFieldChar_4);
-                                        //grandPaa.Append(objRun_8);
-
-
-                                        RunProperties runProperties5 = new RunProperties();
-                                        Spacing spacing1 = new Spacing() { Val = -7 };
-                                        FontSize fontSize3 = new FontSize() { Val = "16" };
-                                        runProperties5.Append(spacing1);
-                                        runProperties5.Append(fontSize3);
-                                        FieldCode text3 = new FieldCode();
-                                        //it is where we need to set our pages count
-                                        text3.Text = "NUMPAGES";
-
-                                        parentRun.Append(runProperties5);
-                                        parentRun.Append(text3);
-                                        //grandPaa.Append(run5);
-
-
-                                        FieldChar objFieldChar_6 = new FieldChar() { FieldCharType = FieldCharValues.End };
-                                        parentRun.Append(objFieldChar_6);
-                                        //grandPaa.Append(objRun_12);
-                                        #endregion
-                                        #endregion
-
-                                        //#region Working Perfectly Fine
                                         //Text t = parentRun.Elements<Text>().First();
-                                        //t.RemoveAllChildren();
-                                        //t.Remove();
-                                        //RunProperties runProperties4 = new RunProperties();
-                                        //FontSize fontSize2 = new FontSize() { Val = "16" };
+                                        //t.Text = t.Text.Substring(0, 6);
+                                        ////string sub = t.Text.Substring(Math.Max(0, t.Text.Length - 5));
+                                        ////t.Text= t.Text.Split(Convert.ToChar("f")).First();
+                                        ////t.Text = t.Text + "f";
+                                        ////t.RemoveAllChildren();
+                                        ////t.Remove();
+                                        ////RunProperties runProperties4 = new RunProperties();
+                                        ////FontSize fontSize2 = new FontSize() { Val = "16" };
 
-                                        //runProperties4.Append(fontSize2);
-                                        //Text text2 = new Text();
-                                        //text2.Text = "Page:";
+                                        ////runProperties4.Append(fontSize2);
+                                        ////Text text2 = new Text();
+                                        ////text2.Text = "Page:";
 
-                                        //parentRun.Append(runProperties4);
-                                        //parentRun.Append(text2);
+                                        ////parentRun.Append(runProperties4);
+                                        ////parentRun.Append(text2);
                                         //#region ByWaqas
 
                                         //FieldChar objFieldChar_1 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
@@ -354,15 +285,90 @@ namespace CloningDocs_OpenXML
                                         //FieldChar objFieldChar_6 = new FieldChar() { FieldCharType = FieldCharValues.End };
                                         //parentRun.Append(objFieldChar_6);
                                         ////grandPaa.Append(objRun_12);
-                                        //#endregion 
                                         //#endregion
+                                        #endregion
+
+                                        #region Working Perfectly Fine
+                                        Text t = parentRun.Elements<Text>().First();
+                                        var pageNumber = t.Text.Substring(6, 1);
+                                        t.RemoveAllChildren();
+                                        t.Remove();
+                                        RunProperties runProperties4 = new RunProperties();
+                                        FontSize fontSize2 = new FontSize() { Val = "16" };
+
+                                        runProperties4.Append(fontSize2);
+                                        Text text2 = new Text();
+                                        text2.Text = "Page: ";
+
+                                        parentRun.Append(runProperties4);
+                                        parentRun.Append(text2);
+                                        #region ByWaqas
+
+                                        FieldChar objFieldChar_1 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
+                                        parentRun.Append(objFieldChar_1);
+                                        //grandPaa.Append(parentRun);
+
+
+                                        RunProperties runProperties26 = new RunProperties();
+                                        FontSize fontSize26 = new FontSize() { Val = "16" };
+
+                                        runProperties26.Append(fontSize26);
+
+                                        FieldCode objFieldCode_1 = new FieldCode();
+                                        objFieldCode_1.Text = "PAGE" + " " + pageNumber;
+                                        //page is page number 
+                                        parentRun.Append(runProperties26);
+                                        parentRun.Append(objFieldCode_1);
+                                        //grandPaa.Append(parentRun);
+
+
+                                        FieldChar objFieldChar_3 = new FieldChar() { FieldCharType = FieldCharValues.End };
+                                        parentRun.Append(objFieldChar_3);
+                                        //grandPaa.Append(objRun_6);
+
+                                        RunProperties runProperties25 = new RunProperties();
+                                        FontSize fontSize25 = new FontSize() { Val = "16" };
+                                        runProperties25.Append(fontSize25);
+
+                                        Text objText_3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+                                        objText_3.Text = " of ";
+                                        parentRun.Append(runProperties25);
+                                        parentRun.Append(objText_3);
+                                        //grandPaa.Append(objRun_7);
+
+
+                                        FieldChar objFieldChar_4 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
+                                        parentRun.Append(objFieldChar_4);
+                                        //grandPaa.Append(objRun_8);
+
+
+                                        RunProperties runProperties5 = new RunProperties();
+                                        Spacing spacing1 = new Spacing() { Val = -7 };
+                                        FontSize fontSize3 = new FontSize() { Val = "16" };
+                                        runProperties5.Append(spacing1);
+                                        runProperties5.Append(fontSize3);
+                                        FieldCode text3 = new FieldCode();
+                                        //it is where we need to set our pages count
+                                        text3.Text = "NUMPAGES";
+
+                                        parentRun.Append(runProperties5);
+                                        parentRun.Append(text3);
+                                        //grandPaa.Append(run5);
+
+
+                                        FieldChar objFieldChar_6 = new FieldChar() { FieldCharType = FieldCharValues.End };
+                                        parentRun.Append(objFieldChar_6);
+                                        //grandPaa.Append(objRun_12);
+                                        #endregion 
+                                        #endregion
 
                                     }
 
                                 }
                             }
                         }
-                       
+                        #endregion
+
                     }
                 }
 
