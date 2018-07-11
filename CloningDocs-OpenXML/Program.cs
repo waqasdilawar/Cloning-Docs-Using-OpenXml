@@ -16,8 +16,8 @@ namespace CloningDocs_OpenXML
     {
         static void Main(string[] args)
         {
-            using (var mainDoc = WordprocessingDocument.Open(@"C:\Users\waqas.dilawar\Documents\Communication_Policy_and_Procedure.docx", false))
-            using (var resultDoc = WordprocessingDocument.Create(@"C:\Users\waqas.dilawar\Documents\Communication_Policy_and_Procedure-2.docx",
+            using (var mainDoc = WordprocessingDocument.Open(@"C:\Users\waqas.dilawar\Documents\Door_Access_Restrictions_Policy_and_Procedure.docx", false))
+            using (var resultDoc = WordprocessingDocument.Create(@"C:\Users\waqas.dilawar\Documents\Door_Access_Restrictions_Policy_and_Procedure-2.docx",
               WordprocessingDocumentType.Document))
             {
                 // copy parts from source document to new document
@@ -46,11 +46,13 @@ namespace CloningDocs_OpenXML
                         //grandPaa.Append(objRun_12);
                         //var typeOfParent = parentRun1.GetType();
                         // use the StringComparison parameter on methods that have it to specify how to match strings.
+                        bool isReview = currentText.Text.EndsWith("Reviewed:", System.StringComparison.CurrentCultureIgnoreCase);
+
                         bool ignoreCaseSearchResult = currentText.Text.StartsWith(" of ", System.StringComparison.CurrentCultureIgnoreCase);
                         bool isEnds = currentText.Text.EndsWith("Page: ", System.StringComparison.CurrentCultureIgnoreCase);
                         bool isStart = currentText.Text.StartsWith("Page: ", System.StringComparison.CurrentCultureIgnoreCase);
                        
-                        if (ignoreCaseSearchResult && !isEnds)
+                        if (ignoreCaseSearchResult && !isEnds || isReview)
                         {
                             Regex re = new Regex(@"\d+");
                             Match m = re.Match(currentText.Text);
@@ -78,7 +80,7 @@ namespace CloningDocs_OpenXML
                                     //Run newRun = new Run();
 
 
-                                    //#region Working Partially Fine
+                                    #region Working Partially Fine
                                     ////RunProperties runProperties25 = new RunProperties();
                                     ////FontSize fontSize25 = new FontSize() { Val = "16" };
                                     ////runProperties25.Append(fontSize25);
@@ -112,10 +114,10 @@ namespace CloningDocs_OpenXML
                                     ////FieldChar objFieldChar_6 = new FieldChar() { FieldCharType = FieldCharValues.End };
                                     ////newRun.Append(objFieldChar_6);
                                     ////grandPaa.InsertBefore(newRun, referenceRun); 
-                                    //#endregion
+                                    #endregion
 
 
-                                    //#region Working Perfectly Fine
+                                    #region Working Perfectly Fine
                                     //RunProperties runProperties4 = new RunProperties();
                                     //FontSize fontSize2 = new FontSize() { Val = "16" };
 
@@ -184,8 +186,9 @@ namespace CloningDocs_OpenXML
                                     ////grandPaa.Append(objRun_12);
                                     //#endregion
                                     //grandPaa.InsertBefore(newRun, referenceRun);
-                                    //#endregion
                                     #endregion
+                                    
+                                #endregion
                                 }
                             }
                         }
@@ -315,7 +318,7 @@ namespace CloningDocs_OpenXML
                                         runProperties26.Append(fontSize26);
 
                                         FieldCode objFieldCode_1 = new FieldCode();
-                                        objFieldCode_1.Text = "PAGE" + " " + pageNumber;
+                                        objFieldCode_1.Text = "PAGE" + " " + Convert.ToInt32 (pageNumber);
                                         //page is page number 
                                         parentRun.Append(runProperties26);
                                         parentRun.Append(objFieldCode_1);
