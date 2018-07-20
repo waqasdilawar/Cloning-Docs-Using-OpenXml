@@ -16,8 +16,8 @@ namespace CloningDocs_OpenXML
     {
         static void Main(string[] args)
         {
-            using (var mainDoc = WordprocessingDocument.Open(@"C:\Users\waqas.dilawar\Documents\Door_Access_Restrictions_Policy_and_Procedure-2.docx", false))
-            using (var resultDoc = WordprocessingDocument.Create(@"C:\Users\waqas.dilawar\Documents\Door_Access_Restrictions_Policy_and_Procedure-4.docx",
+            using (var mainDoc = WordprocessingDocument.Open(@"C:\Users\waqas.dilawar\Documents\Recruitment_Pack_–_Recruit_Specification.docx", false))
+            using (var resultDoc = WordprocessingDocument.Create(@"C:\Users\waqas.dilawar\Documents\Recruitment_Pack_–_Recruit_Specification-2.docx",
               WordprocessingDocumentType.Document))
             {
                 // copy parts from source document to new document
@@ -34,15 +34,14 @@ namespace CloningDocs_OpenXML
                 var count = 0;
                 foreach (var headerPart in resultDoc.MainDocumentPart.HeaderParts)
                 {
+
+                    
                     //Gets the text in headers
                     foreach (Text currentText in headerPart.RootElement.Descendants<DocumentFormat.OpenXml.Wordprocessing.Text>())
-                    {
-                        bool isStartedWithReviewed = currentText.Text.StartsWith("Reviewed: ", System.StringComparison.CurrentCultureIgnoreCase);
-                        if (isStartedWithReviewed && count==0)
-                        {
-                            count++;
-                            TotalCountChange.ChangeTotalCount(currentText);
-                        }
+                    {   
+                     
+               
+                        
                         //var parentRun1 = currentText.Parent;
                         //var grandPaa1 = parentRun1.Parent;
                         //var typeOfGParent = grandPaa1.GetType();
@@ -303,73 +302,73 @@ namespace CloningDocs_OpenXML
                                         t.RemoveAllChildren();
                                         t.Remove();
                                         #region UnComment
-                                        //RunProperties runProperties4 = new RunProperties();
-                                        //FontSize fontSize2 = new FontSize() { Val = "16" };
+                                        RunProperties runProperties4 = new RunProperties();
+                                        FontSize fontSize2 = new FontSize() { Val = "16" };
 
-                                        //runProperties4.Append(fontSize2);
-                                        //Text text2 = new Text();
-                                        //text2.Text = "Page: ";
+                                        runProperties4.Append(fontSize2);
+                                        Text text2 = new Text();
+                                        text2.Text = "Page: ";
 
-                                        //parentRun.Append(runProperties4);
-                                        //parentRun.Append(text2);
-                                        //#region ByWaqas
+                                        parentRun.Append(runProperties4);
+                                        parentRun.Append(text2);
+                                        #region ByWaqas
 
-                                        //FieldChar objFieldChar_1 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
-                                        //parentRun.Append(objFieldChar_1);
-                                        ////grandPaa.Append(parentRun);
-
-
-                                        //RunProperties runProperties26 = new RunProperties();
-                                        //FontSize fontSize26 = new FontSize() { Val = "16" };
-
-                                        //runProperties26.Append(fontSize26);
-
-                                        //FieldCode objFieldCode_1 = new FieldCode();
-                                        //objFieldCode_1.Text = "PAGE" + " " + Convert.ToInt32 (pageNumber);
-                                        ////page is page number 
-                                        //parentRun.Append(runProperties26);
-                                        //parentRun.Append(objFieldCode_1);
-                                        ////grandPaa.Append(parentRun);
+                                        FieldChar objFieldChar_1 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
+                                        parentRun.Append(objFieldChar_1);
+                                        //grandPaa.Append(parentRun);
 
 
-                                        //FieldChar objFieldChar_3 = new FieldChar() { FieldCharType = FieldCharValues.End };
-                                        //parentRun.Append(objFieldChar_3);
-                                        ////grandPaa.Append(objRun_6);
+                                        RunProperties runProperties26 = new RunProperties();
+                                        FontSize fontSize26 = new FontSize() { Val = "16" };
 
-                                        //RunProperties runProperties25 = new RunProperties();
-                                        //FontSize fontSize25 = new FontSize() { Val = "16" };
-                                        //runProperties25.Append(fontSize25);
+                                        runProperties26.Append(fontSize26);
 
-                                        //Text objText_3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-                                        //objText_3.Text = " of ";
-                                        //parentRun.Append(runProperties25);
-                                        //parentRun.Append(objText_3);
-                                        ////grandPaa.Append(objRun_7);
+                                        FieldCode objFieldCode_1 = new FieldCode();
+                                        objFieldCode_1.Text = "PAGE";
+                                        //page is page number 
+                                        parentRun.Append(runProperties26);
+                                        parentRun.Append(objFieldCode_1);
+                                        //grandPaa.Append(parentRun);
 
 
-                                        //FieldChar objFieldChar_4 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
-                                        //parentRun.Append(objFieldChar_4);
-                                        ////grandPaa.Append(objRun_8);
+                                        FieldChar objFieldChar_3 = new FieldChar() { FieldCharType = FieldCharValues.End };
+                                        parentRun.Append(objFieldChar_3);
+                                        //grandPaa.Append(objRun_6);
+
+                                        RunProperties runProperties25 = new RunProperties();
+                                        FontSize fontSize25 = new FontSize() { Val = "16" };
+                                        runProperties25.Append(fontSize25);
+
+                                        Text objText_3 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+                                        objText_3.Text = " of ";
+                                        parentRun.Append(runProperties25);
+                                        parentRun.Append(objText_3);
+                                        //grandPaa.Append(objRun_7);
 
 
-                                        //RunProperties runProperties5 = new RunProperties();
-                                        //Spacing spacing1 = new Spacing() { Val = -7 };
-                                        //FontSize fontSize3 = new FontSize() { Val = "16" };
-                                        //runProperties5.Append(spacing1);
-                                        //runProperties5.Append(fontSize3);
-                                        //FieldCode text3 = new FieldCode();
-                                        ////it is where we need to set our pages count
-                                        //text3.Text = "NUMPAGES";
-
-                                        //parentRun.Append(runProperties5);
-                                        //parentRun.Append(text3);
-                                        ////grandPaa.Append(run5);
+                                        FieldChar objFieldChar_4 = new FieldChar() { FieldCharType = FieldCharValues.Begin };
+                                        parentRun.Append(objFieldChar_4);
+                                        //grandPaa.Append(objRun_8);
 
 
-                                        //FieldChar objFieldChar_6 = new FieldChar() { FieldCharType = FieldCharValues.End };
-                                        //parentRun.Append(objFieldChar_6);
-                                        ////grandPaa.Append(objRun_12);
-                                        //#endregion
+                                        RunProperties runProperties5 = new RunProperties();
+                                        Spacing spacing1 = new Spacing() { Val = -7 };
+                                        FontSize fontSize3 = new FontSize() { Val = "16" };
+                                        runProperties5.Append(spacing1);
+                                        runProperties5.Append(fontSize3);
+                                        FieldCode text3 = new FieldCode();
+                                        //it is where we need to set our pages count
+                                        text3.Text = "NUMPAGES";
+
+                                        parentRun.Append(runProperties5);
+                                        parentRun.Append(text3);
+                                        //grandPaa.Append(run5);
+
+
+                                        FieldChar objFieldChar_6 = new FieldChar() { FieldCharType = FieldCharValues.End };
+                                        parentRun.Append(objFieldChar_6);
+                                        //grandPaa.Append(objRun_12);
+                                        #endregion
                                         #endregion
 
                                         #endregion
